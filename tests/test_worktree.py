@@ -10,14 +10,14 @@ from pathlib import Path
 
 import pytest
 
-from mewcode.cache import FileCache
-from mewcode.config import WorktreeConfig, load_config
-from mewcode.worktree.changes import count_worktree_changes, has_worktree_changes
-from mewcode.worktree.integration import build_worktree_notice, generate_worktree_name
-from mewcode.worktree.manager import WorktreeError, WorktreeManager
-from mewcode.worktree.models import WorktreeSession
-from mewcode.worktree.session import load_worktree_session, save_worktree_session
-from mewcode.worktree.slug import flatten_slug, validate_slug
+from hivecode.cache import FileCache
+from hivecode.config import WorktreeConfig, load_config
+from hivecode.worktree.changes import count_worktree_changes, has_worktree_changes
+from hivecode.worktree.integration import build_worktree_notice, generate_worktree_name
+from hivecode.worktree.manager import WorktreeError, WorktreeManager
+from hivecode.worktree.models import WorktreeSession
+from hivecode.worktree.session import load_worktree_session, save_worktree_session
+from hivecode.worktree.slug import flatten_slug, validate_slug
 
 # =========================================================================
 # A. Slug 校验

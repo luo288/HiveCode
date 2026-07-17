@@ -7,8 +7,8 @@ from unittest.mock import AsyncMock, MagicMock
 
 import pytest
 
-from mewcode.commands.parser import complete, parse_command
-from mewcode.commands.registry import (
+from hivecode.commands.parser import complete, parse_command
+from hivecode.commands.registry import (
     Command,
     CommandContext,
     CommandRegistry,
@@ -245,8 +245,8 @@ class TestComplete:
 class TestHelpHandler:
     @pytest.mark.asyncio
     async def test_list_all(self) -> None:
-        from mewcode.commands.handlers import register_all_commands
-        from mewcode.commands.handlers.help import handle_help
+        from hivecode.commands.handlers import register_all_commands
+        from hivecode.commands.handlers.help import handle_help
 
         registry = CommandRegistry()
         register_all_commands(registry)
@@ -261,8 +261,8 @@ class TestHelpHandler:
 
     @pytest.mark.asyncio
     async def test_help_specific_command(self) -> None:
-        from mewcode.commands.handlers import register_all_commands
-        from mewcode.commands.handlers.help import handle_help
+        from hivecode.commands.handlers import register_all_commands
+        from hivecode.commands.handlers.help import handle_help
 
         registry = CommandRegistry()
         register_all_commands(registry)
@@ -275,8 +275,8 @@ class TestHelpHandler:
 
     @pytest.mark.asyncio
     async def test_help_unknown_command(self) -> None:
-        from mewcode.commands.handlers import register_all_commands
-        from mewcode.commands.handlers.help import handle_help
+        from hivecode.commands.handlers import register_all_commands
+        from hivecode.commands.handlers.help import handle_help
 
         registry = CommandRegistry()
         register_all_commands(registry)
@@ -290,7 +290,7 @@ class TestPlanDoHandlers:
 
     @pytest.mark.asyncio
     async def test_plan_switches_mode(self) -> None:
-        from mewcode.commands.handlers.plan import handle_plan
+        from hivecode.commands.handlers.plan import handle_plan
 
         ui = MockUI()
         ctx = _make_context(args="", ui=ui)
@@ -300,7 +300,7 @@ class TestPlanDoHandlers:
 
     @pytest.mark.asyncio
     async def test_plan_with_args_sends_message(self) -> None:
-        from mewcode.commands.handlers.plan import handle_plan
+        from hivecode.commands.handlers.plan import handle_plan
 
         ui = MockUI()
         ctx = _make_context(args="设计登录模块", ui=ui)
@@ -311,7 +311,7 @@ class TestPlanDoHandlers:
 class TestSkillHandler:
     @pytest.mark.asyncio
     async def test_skill_list_no_loader(self) -> None:
-        from mewcode.commands.handlers.skill import handle_skill
+        from hivecode.commands.handlers.skill import handle_skill
 
         ui = MockUI()
         ctx = _make_context(args="list", ui=ui)
@@ -320,7 +320,7 @@ class TestSkillHandler:
 
     @pytest.mark.asyncio
     async def test_skill_list_with_loader(self) -> None:
-        from mewcode.commands.handlers.skill import handle_skill
+        from hivecode.commands.handlers.skill import handle_skill
 
         ui = MockUI()
         ctx = _make_context(args="list", ui=ui)
@@ -334,7 +334,7 @@ class TestSkillHandler:
 
     @pytest.mark.asyncio
     async def test_skill_unknown_subcmd(self) -> None:
-        from mewcode.commands.handlers.skill import handle_skill
+        from hivecode.commands.handlers.skill import handle_skill
 
         ui = MockUI()
         ctx = _make_context(args="foobar", ui=ui)
@@ -347,7 +347,7 @@ class TestStatusHandler:
 
     @pytest.mark.asyncio
     async def test_status_output(self) -> None:
-        from mewcode.commands.handlers.status import handle_status
+        from hivecode.commands.handlers.status import handle_status
 
         ui = MockUI()
         agent = MagicMock()
@@ -365,13 +365,13 @@ class TestStatusHandler:
         ctx.memory_manager.load.return_value = ""
 
         await handle_status(ctx)
-        assert "MewCode 状态" in ui.messages[0]
+        assert "HiveCode 状态" in ui.messages[0]
         assert "default" in ui.messages[0]
 
 class TestSessionHandler:
     @pytest.mark.asyncio
     async def test_session_no_manager(self) -> None:
-        from mewcode.commands.handlers.session import handle_session
+        from hivecode.commands.handlers.session import handle_session
 
         ui = MockUI()
         ctx = _make_context(args="", ui=ui)
@@ -381,7 +381,7 @@ class TestSessionHandler:
 
     @pytest.mark.asyncio
     async def test_session_list_empty(self) -> None:
-        from mewcode.commands.handlers.session import handle_session
+        from hivecode.commands.handlers.session import handle_session
 
         ui = MockUI()
         sm = MagicMock()
@@ -393,7 +393,7 @@ class TestSessionHandler:
 
     @pytest.mark.asyncio
     async def test_session_unknown_sub(self) -> None:
-        from mewcode.commands.handlers.session import handle_session
+        from hivecode.commands.handlers.session import handle_session
 
         ui = MockUI()
         ctx = _make_context(args="foobar", ui=ui)
@@ -404,7 +404,7 @@ class TestSessionHandler:
 class TestMemoryHandler:
     @pytest.mark.asyncio
     async def test_memory_display(self) -> None:
-        from mewcode.commands.handlers.memory import handle_memory
+        from hivecode.commands.handlers.memory import handle_memory
 
         ui = MockUI()
         mm = MagicMock()
@@ -416,7 +416,7 @@ class TestMemoryHandler:
 
     @pytest.mark.asyncio
     async def test_memory_clear(self) -> None:
-        from mewcode.commands.handlers.memory import handle_memory
+        from hivecode.commands.handlers.memory import handle_memory
 
         ui = MockUI()
         mm = MagicMock()
@@ -428,7 +428,7 @@ class TestMemoryHandler:
 
     @pytest.mark.asyncio
     async def test_memory_no_manager(self) -> None:
-        from mewcode.commands.handlers.memory import handle_memory
+        from hivecode.commands.handlers.memory import handle_memory
 
         ui = MockUI()
         ctx = _make_context(args="", ui=ui)
@@ -442,7 +442,7 @@ class TestMemoryHandler:
 
 class TestRegisterAllCommands:
     def test_all_commands_registered(self) -> None:
-        from mewcode.commands.handlers import register_all_commands
+        from hivecode.commands.handlers import register_all_commands
 
         registry = CommandRegistry()
         register_all_commands(registry)
@@ -456,13 +456,13 @@ class TestRegisterAllCommands:
         assert names == expected
 
     def test_no_alias_conflicts(self) -> None:
-        from mewcode.commands.handlers import register_all_commands
+        from hivecode.commands.handlers import register_all_commands
 
         registry = CommandRegistry()
         register_all_commands(registry)
 
     def test_aliases_work(self) -> None:
-        from mewcode.commands.handlers import register_all_commands
+        from hivecode.commands.handlers import register_all_commands
 
         registry = CommandRegistry()
         register_all_commands(registry)

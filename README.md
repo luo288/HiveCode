@@ -1,4 +1,4 @@
-﻿# MewCode
+# HiveCode
 
 终端 AI 编程助手（Python + Textual），支持 Anthropic / OpenAI / OpenAI 兼容接口，以及 MCP、权限模式、Skills、Teams 等能力。
 
@@ -13,8 +13,8 @@
 ### 1. 克隆仓库
 
 ```bash
-git clone https://github.com/<你的用户名>/MewCode.git
-cd MewCode
+git clone https://github.com/<你的用户名>/HiveCode.git
+cd HiveCode
 ```
 
 ### 2. 安装依赖
@@ -45,20 +45,20 @@ pip install -e .
 
 | 路径 | 说明 |
 |------|------|
-| `~/.mewcode/config.yaml` | 用户全局配置（推荐） |
-| `.mewcode/config.yaml` | 当前项目配置 |
-| `.mewcode/config.local.yaml` | 本地覆盖（勿提交密钥） |
+| `~/.hivecode/config.yaml` | 用户全局配置（推荐） |
+| `.hivecode/config.yaml` | 当前项目配置 |
+| `.hivecode/config.local.yaml` | 本地覆盖（勿提交密钥） |
 
 可复制示例配置后修改：
 
 ```bash
 # Windows PowerShell
-New-Item -ItemType Directory -Force -Path "$env:USERPROFILE\.mewcode" | Out-Null
-Copy-Item config.example.yaml "$env:USERPROFILE\.mewcode\config.yaml"
+New-Item -ItemType Directory -Force -Path "$env:USERPROFILE\.hivecode" | Out-Null
+Copy-Item config.example.yaml "$env:USERPROFILE\.hivecode\config.yaml"
 
 # macOS / Linux
-mkdir -p ~/.mewcode
-cp config.example.yaml ~/.mewcode/config.yaml
+mkdir -p ~/.hivecode
+cp config.example.yaml ~/.hivecode/config.yaml
 ```
 
 然后用编辑器打开配置文件，填入自己的 `api_key` / `base_url` / `model`。
@@ -74,18 +74,18 @@ cp config.example.yaml ~/.mewcode/config.yaml
 
 ```bash
 # uv
-uv run mewcode
+uv run hivecode
 
 # 或已激活 venv / 已安装入口脚本后
-mewcode
+hivecode
 ```
 
 常用参数：
 
 ```bash
-mewcode --mode plan          # 规划模式
-mewcode -p "解释这段代码"     # 非交互：执行后打印结果
-mewcode --remote             # WebSocket 远程模式（浏览器访问 http://localhost:18888）
+hivecode --mode plan          # 规划模式
+hivecode -p "解释这段代码"     # 非交互：执行后打印结果
+hivecode --remote             # WebSocket 远程模式（浏览器访问 http://localhost:18888）
 ```
 
 ## 配置说明（简要）
@@ -108,14 +108,14 @@ uv run pytest
 ## 安全提示
 
 - **不要**把真实 API Key 提交到 Git
-- 本地配置目录 `.mewcode/` 与根目录 `config.yaml` 已在 `.gitignore` 中忽略
+- 本地配置目录 `.hivecode/` 与根目录 `config.yaml` 已在 `.gitignore` 中忽略
 - 分享仓库时只保留 `config.example.yaml` 这类不含密钥的示例
 
 ## 项目结构（概览）
 
 ```
-MewCode/
-├── mewcode/           # 主程序包
+HiveCode/
+├── hivecode/           # 主程序包
 ├── tests/             # 测试
 ├── config.example.yaml
 ├── pyproject.toml

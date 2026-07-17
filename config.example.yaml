@@ -1,8 +1,8 @@
-﻿# MewCode 示例配置
+# HiveCode 示例配置
 # 复制到以下任一路径后修改：
-#   ~/.mewcode/config.yaml
-#   .mewcode/config.yaml
-#   .mewcode/config.local.yaml
+#   ~/.hivecode/config.yaml
+#   .hivecode/config.yaml
+#   .hivecode/config.local.yaml
 #
 # 不要把填好真实密钥的文件提交到 Git。
 
