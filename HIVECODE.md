@@ -1,7 +1,7 @@
 # HiveCode 项目
 
 ## 技术栈
-- Go
+- python
 
 ## 代码规范
 - commit message 用英文
